@@ -44,3 +44,20 @@ LOCAL_LDFLAGS += -static
 LOCAL_STATIC_LIBRARIES := bz
 include $(BUILD_EXECUTABLE)
  
+
+# zipnote
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := \
+          zip/zipfile.c \
+          zip/fileio.c \
+          zip/util.c \
+          zip/globals.c \
+          zip/unix/unix.c \
+          zip/zipnote.c
+TARGET_FORMAT_STRING_CFLAGS :=  
+LOCAL_C_INCLUDES := \
+	$(LOCAL_PATH)/zip
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/zip
+LOCAL_CFLAGS += -DANDROID -DUNIX -DUIDGID_NOT_16BIT -DHAVE_DIRENT_H
+LOCAL_MODULE := zipnote 
+include $(BUILD_EXECUTABLE)
